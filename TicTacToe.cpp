@@ -1,4 +1,4 @@
-//Tic Tac Toe By ABSY (IRBI Alternative Development)
+//Tic Tac Toe By ABSY 
 
 #include <iostream>
 using namespace std;
@@ -12,6 +12,9 @@ int Engine();
 void DrawOutline();
 
 
+////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
+
 
 int main()
 {
@@ -22,8 +25,10 @@ int main()
 
     do
     {
-        DrawOutline();                         
-        player=(player%2)?1:2;
+        DrawOutline();   
+	    
+	//Invoking player's turn as even and odd alternative!
+        player=(player%2)?1:2;          
 
         cout << "      Player " << player << ", enter a number:  ";
         cin >> option;
@@ -61,18 +66,19 @@ int main()
         {
             cout<<"         Invalid move ";
 
-            player--;
-            cin.ignore();
-            cin.get();
+	    //Invalid move should not count it as a legit player's move. so ignoring the actual increment above	
+            player--;         
+            cin.ignore();    //Ignoring the invalid entry from taking space
+            cin.get();       //Ask for new legit entry if invalid entry was made intentionally.
         }
-        i=Engine();
+        i=Engine();             //Get game status from Engine function
 
-        player++;
+        player++;               //Give turn to next player if all entriees are legit.
     }while(i==-1);
-    DrawOutline();
+    DrawOutline();              //Draw updated game board in every iteration
     if(i==1)
 
-        cout<<"==>\a       Player "<<--player<<" win ";
+        cout<<"==>\a       Player "<<--player<<" win ";          //Current count is not the actual count to determine winner
     else
         cout<<"==>\a       Game draw";
 
